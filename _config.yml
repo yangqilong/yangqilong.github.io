@@ -1,11 +1,11 @@
 # Basic
 title: YQL's Blog
-subtitle: 关于ios的博客
-welcome_message: 欢迎访问我的博客
-description: Vno Jekyll is a port of my Ghost theme vno.
-creator: <a href="http://onev.cat">@onevcat</a>
+subtitle: An iOS developer's note
+welcome_message: Be the best you can be
+description: Hi, I'm an ios developer working in Shanghai.My blog records study and life.Thank for your visit
+#creator: <a href="http://onev.cat">@onevcat</a>
 
-url: "http://vno.onevcat.com"
+#url: "http://vno.onevcat.com"
 
 permalink: /:year/:month/:title/
 
@@ -13,17 +13,17 @@ permalink: /:year/:month/:title/
 highlighter: rouge
 
 # supported colors: blue, green, purple, red, orange or slate. If you need clear, leave it empty.
-cover_color: red
+cover_color: slate
 
 # The blog button should not be removed.
 blog_button:
-    title: Blog
+    title: My Blog
     description: Visit blog
 
 # Navigation buttons in the front page.
-nav:
-    - {title: Projects, description: My Projects, url: 'http://project.onevcat.com'}
-    # - {title: Another Button, description: A button, url: 'http://example.com'}
+#nav:
+ #   - {title: Projects, description: My Projects, url: 'http://project.onevcat.com'}
+ #   - {title: Another Button, description: A button, url: 'http://example.com'}
 
 # Pagination
 gems: [jekyll-paginate]
