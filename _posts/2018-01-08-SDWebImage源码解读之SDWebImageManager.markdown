@@ -3,9 +3,9 @@ layout: post
 title: SDWebImage源码解读之SDWebImageManager
 date: 2018-01-08 13:38:00.000000000 
 ---
-###前言
+#### 前言
 `SDWebImageManager`是`SDWebImage`中最核心的类了，但是源代码确是非常简单的。之所以能做到这一点，都归功于功能的良好分类。有了`SDWebImageManager`管理类，我们就能做很多其他的有意思的事情。比如给各种view绑定一个URL，就能显示图片的功能，有了Options，就能满足多种应用场景的图片下载任务。
-###SDWebImageOptions
+### SDWebImageOptions
 `SDWebImageOptions`作为图片选项提供了非常多的子项，用法和注意事项我都写在代码里，如下：
 
 ```bash
@@ -111,7 +111,7 @@ typedef NS_OPTIONS(NSUInteger, SDWebImageOptions) {
 
 ```
 
-###Block
+### Block
 
 ```bash
 typedef void(^SDExternalCompletionBlock)(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL);
@@ -122,7 +122,7 @@ typedef NSString * _Nullable (^SDWebImageCacheKeyFilterBlock)(NSURL * _Nullable 
 
 ```
 
-###SDWebImageManagerDelegate
+### SDWebImageManagerDelegate
 
 使用协议增加了我们编程的灵活性，SDWebImageManagerDelegate提供了两个方法:<br />
 
@@ -161,7 +161,7 @@ typedef NSString * _Nullable (^SDWebImageCacheKeyFilterBlock)(NSURL * _Nullable 
 @end
 ```
 
-###SDWebImageCombinedOperation
+### SDWebImageCombinedOperation
 `SDWebImageCombinedOperation`是对每一个下载任务的封装，重要的是它提供了一个取消功能。
 
 ```bash
@@ -175,8 +175,8 @@ typedef NSString * _Nullable (^SDWebImageCacheKeyFilterBlock)(NSURL * _Nullable 
 
 ```
 
-###SDWebImageManager
-####1.属性
+### SDWebImageManager
+#### 1.属性
 ```bash
 @interface SDWebImageManager ()
 
@@ -188,7 +188,7 @@ typedef NSString * _Nullable (^SDWebImageCacheKeyFilterBlock)(NSURL * _Nullable 
 @end
 
 ```
-####2.初始化（非常典型的初始化）
+#### 2.初始化（非常典型的初始化）
 ```bash
 + (nonnull instancetype)sharedManager {
     static dispatch_once_t once;
@@ -216,7 +216,7 @@ typedef NSString * _Nullable (^SDWebImageCacheKeyFilterBlock)(NSURL * _Nullable 
 }
 
 ```
-####3.URL 转 key
+#### 3.URL 转 key
 ```bash
 - (nullable NSString *)cacheKeyForURL:(nullable NSURL *)url {
     if (!url) {
@@ -231,7 +231,7 @@ typedef NSString * _Nullable (^SDWebImageCacheKeyFilterBlock)(NSURL * _Nullable 
 }
 
 ```
-####4.查看图片是否已经缓存
+#### 4.查看图片是否已经缓存
 ```bash
 - (void)cachedImageExistsForURL:(nullable NSURL *)url
                      completion:(nullable SDWebImageCheckCacheCompletionBlock)completionBlock {
@@ -258,7 +258,7 @@ typedef NSString * _Nullable (^SDWebImageCacheKeyFilterBlock)(NSURL * _Nullable 
 }
 
 ```
-####5.查看是否已经缓存到了硬盘
+#### 5.查看是否已经缓存到了硬盘
 ```bash
 - (void)diskImageExistsForURL:(nullable NSURL *)url
                    completion:(nullable SDWebImageCheckCacheCompletionBlock)completionBlock {
@@ -274,11 +274,11 @@ typedef NSString * _Nullable (^SDWebImageCacheKeyFilterBlock)(NSURL * _Nullable 
 
 ```
 
-####6.核心下载方法
+#### 6.核心下载方法
 
-* 处理参数相关的异常<br \>
-* 处理复杂的逻辑<br \>
-* 返回数据<br \>
+* 处理参数相关的异常 <br \> 
+* 处理复杂的逻辑 <br \> 
+* 返回数据 <br \> 
 
 ```bash
 - (id <SDWebImageOperation>)loadImageWithURL:(nullable NSURL *)url
@@ -477,7 +477,7 @@ typedef NSString * _Nullable (^SDWebImageCacheKeyFilterBlock)(NSURL * _Nullable 
 }
 
 ```
-####7.保存图片到缓存区
+#### 7.保存图片到缓存区
 ```bash
 - (void)saveImageToCache:(nullable UIImage *)image forURL:(nullable NSURL *)url {
     if (image && url) {
@@ -487,7 +487,7 @@ typedef NSString * _Nullable (^SDWebImageCacheKeyFilterBlock)(NSURL * _Nullable 
 }
 
 ```
-####8.取消所有的下载
+#### 8.取消所有的下载
 ```bash
 - (void)cancelAll {
     @synchronized (self.runningOperations) {
@@ -498,7 +498,7 @@ typedef NSString * _Nullable (^SDWebImageCacheKeyFilterBlock)(NSURL * _Nullable 
 }
 
 ```
-####9.查看是否下载完毕
+#### 9.查看是否下载完毕
 ```bash
 - (BOOL)isRunning {
     BOOL isRunning = NO;
@@ -520,7 +520,7 @@ typedef NSString * _Nullable (^SDWebImageCacheKeyFilterBlock)(NSURL * _Nullable 
 }
 
 ```
-####11.回调
+#### 11.回调
 ```bash
 - (void)callCompletionBlockForOperation:(nullable SDWebImageCombinedOperation*)operation
                              completion:(nullable SDInternalCompletionBlock)completionBlock
