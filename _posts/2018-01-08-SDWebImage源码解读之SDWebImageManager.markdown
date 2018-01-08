@@ -3,7 +3,9 @@ layout: post
 title: SDWebImage源码解读之SDWebImageManager
 date: 2018-01-08 13:38:00.000000000 
 ---
-#### 前言
+
+### 前言
+
 `SDWebImageManager`是`SDWebImage`中最核心的类了，但是源代码确是非常简单的。之所以能做到这一点，都归功于功能的良好分类。有了`SDWebImageManager`管理类，我们就能做很多其他的有意思的事情。比如给各种view绑定一个URL，就能显示图片的功能，有了Options，就能满足多种应用场景的图片下载任务。
 ### SDWebImageOptions
 `SDWebImageOptions`作为图片选项提供了非常多的子项，用法和注意事项我都写在代码里，如下：
@@ -276,9 +278,9 @@ typedef NSString * _Nullable (^SDWebImageCacheKeyFilterBlock)(NSURL * _Nullable 
 
 #### 6.核心下载方法
 
-* 处理参数相关的异常 <br \> 
-* 处理复杂的逻辑 <br \> 
-* 返回数据 <br \> 
+* 处理参数相关的异常 
+* 处理复杂的逻辑  
+* 返回数据 
 
 ```bash
 - (id <SDWebImageOperation>)loadImageWithURL:(nullable NSURL *)url
